@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- 需要改变的内容 -->
+	<!-- 配置Controller扫描 -->
+	<context:component-scan base-package="com.itheima.crm.controller" />
+	<!-- 配置Service扫描 -->
+	<context:component-scan base-package="com.itheima.crm.service" />
+	<!-- 配置Repository扫描 -->
+	<context:component-scan base-package="com.itheima.crm.Dao"></context:component-scan>
+	<!-- 通过注解的方法加载properties文件 -->
+	<!-- 	在Java代码中使用@Value注解来加载配置文件中的值。@Value("${fromType.code}"),位置在controller层,service层和dao层可用, -->
+	<context:property-placeholder location="classpath:resource.properties" />
+	
+		<!-- 配置视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀  根目录是webapp-->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<!-- 后缀 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	<!-- 下面的内容不用改变,照抄就可以 -->
+	<!-- 配置注解驱动 -->
+	<mvc:annotation-driven />
+	
+	<!-- 对静态资源放行  -->
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+
+</beans>
+	

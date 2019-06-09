@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task.xsd 
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd ">
+
+		<!-- 配置 读取properties文件 jdbc.properties -->
+		<!-- 读取properties文件的第一种方法,第二种方式见sprinmvc.xml中的@value方法 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<!-- 配置 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property value="${jdbc.system.driver}" name="driverClassName" />
+		<property value="${jdbc.system.url}" name="url" />
+		<property value="${jdbc.system.uid}" name="username" />
+		<property value="${jdbc.system.pwd}" name="password" />
+	</bean>
+	
+	<!-- mybatis -->
+	<!-- 配置SqlSessionFactory -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 设置MyBatis核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis.xml" />
+		<!-- 设置数据源 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+		<!-- 配置Mapper扫描 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 设置Mapper扫描包 也就是dao层和对应的XML文件-->
+		<property name="basePackage" value="com.itheima.crm.mapper" />
+	</bean>
+</beans>

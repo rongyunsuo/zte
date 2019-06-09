@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 别名 -->
+	<!-- 它的作用是让Mapper.xml中的参数找到对应类,<select id="customerCountByQueryVo" parameterType="QueryVo" resultType="Customer">
+	如果没有配置别名,就需要写成 parameterType="com.itheima.crm.pojo.QueryVo" resultType="com.itheima.crm.pojo.Customer"， -->
+	<typeAliases>
+		<package name="com.itheima.crm.pojo"/>
+	</typeAliases>
+
+</configuration>

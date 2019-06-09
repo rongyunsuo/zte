@@ -13,7 +13,7 @@ public class Demo {
     @Test
     public void a(){
         print();
-        System.out.println("22");
+        System.out.println("22222");
 
     }
 

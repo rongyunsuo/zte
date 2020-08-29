@@ -18,7 +18,6 @@ import com.itheima.crm.mapper.CustomerDao;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-
 	public Integer selectByMybatis(){
 		return 1;
 	}

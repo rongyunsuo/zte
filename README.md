@@ -1,2 +1,0 @@
-# zte
-my first github

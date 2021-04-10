@@ -16,6 +16,7 @@ public class FlowBean implements Writable{
 	private long sumFlow;
 	
 	public FlowBean() {
+
 		
 	}
 
